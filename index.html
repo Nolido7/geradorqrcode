@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gerador de QR Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('GERADOR QR CODE_20231015_212356_0000.png'); /* Define a imagem de fundo */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+      font-size: 24px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .input-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 24px;
+    }
+
+    button {
+      background-color: #00a4e4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 15px 30px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    button:hover {
+      background-color: #007ea0;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+      width: 256px;
+      height: 256px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerador de QR Code</h1>
+  <div class="input-container">
+    <input type="text" id="text-input" placeholder="Insira o texto ou URL">
+    <button onclick="generateQRCode()">Gerar QR Code</button>
+  </div>
+  <div id="qrcode"></div>
+
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+  <script>
+    const qrcodeElement = document.getElementById("qrcode");
+    const qrcode = new QRCode(qrcodeElement);
+
+    function generateQRCode() {
+      const text = document.getElementById("text-input").value;
+
+      // Atualiza o conteúdo do QR Code
+      qrcode.clear();
+      qrcode.makeCode(text);
+
+      // Habilita o botão após a geração do QR Code
+      document.querySelector("button").disabled = false;
+    }
+  </script>
+</body>
+</html>
